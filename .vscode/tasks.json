@@ -4,21 +4,21 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "make all",
+            "label": "make release",
             "type": "shell",
             "command": "docker run --rm -t -v ${workspaceFolder}:/work --workdir /work gcc make all",
             "problemMatcher": ["$gcc"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "group": "build"
         },
         {
             "label": "make debug",
             "type": "shell",
             "command": "docker run --rm -t -v ${workspaceFolder}:/work --workdir /work gcc make debug",
             "problemMatcher": ["$gcc"],
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "build docker gdb",
