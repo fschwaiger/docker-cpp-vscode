@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Docker",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "build/apps/program",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "/work",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "make debug",
+            "targetArchitecture": "x64",
+            "sourceFileMap": {
+                "/work": "${workspaceFolder}"
+            },
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "docker.exe",
+                "pipeArgs": [
+                    "run",
+                    "--rm",
+                    "-i",
+                    "-v",
+                    "${workspaceFolder}:/work",
+                    "--privileged",
+                    "--workdir",
+                    "/work",
+                    "gdb",
+                    "sh",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
